@@ -1,0 +1,17 @@
+SELECT
+`Final_Task.Orders`.Date as order_date,
+`Final_Task.ProductCategory`.CategoryName as category_name,
+`Final_Task.Products`.prodName as product_name,
+`Final_Task.Products`.Price as product_price,
+`Final_Task.Orders`.Quantity as order_qty,
+(`Final_Task.Orders`.Quantity * `Final_Task.Products`.Price) as total_sales,
+`Final_Task.Customers`.CustomerEmail as cust_email,
+`Final_Task.Customers`.CustomerCity as cust_city
+FROM `Final_Task.Customers`
+INNER JOIN
+`Final_Task.Orders` ON `Final_Task.Customers`.CustomerID = `Final_Task.Orders`.CustomerID
+INNER JOIN
+`Final_Task.Products` ON `Final_Task.Orders`.ProdNumber = `Final_Task.Products`.ProdNumber
+INNER JOIN
+`Final_Task.ProductCategory` ON `Final_Task.Products`.Category = `Final_Task.ProductCategory`.CategoryID
+ORDER BY order_date;
